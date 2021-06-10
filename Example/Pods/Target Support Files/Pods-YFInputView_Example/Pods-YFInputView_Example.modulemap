@@ -1,0 +1,6 @@
+framework module Pods_YFInputView_Example {
+  umbrella header "Pods-YFInputView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
