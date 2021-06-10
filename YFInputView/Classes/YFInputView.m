@@ -190,14 +190,15 @@
 
 
 - (UIImage *)imageWithName:(NSString *)img {
-    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
-    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFInputView"];
-    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
-    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
-    associateBundleURL = [associateBunle URLForResource:@"YFInputView" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
-    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
-    return image3;
+//    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
+//    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFInputView"];
+//    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
+//    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
+//    associateBundleURL = [associateBunle URLForResource:@"YFInputView" withExtension:@"bundle"];
+//    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
+//    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
+//    return image3;
+    return  [UIImage imageNamed:img];
 }
 
 @end
