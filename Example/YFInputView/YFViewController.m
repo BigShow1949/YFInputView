@@ -7,6 +7,7 @@
 //
 
 #import "YFViewController.h"
+#import "YFRegisterViewController.h"
 
 #import <YFInputView/YFInputView.h>
 #import <YFPageMenu/YFPageMenu.h>
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
 @property (nonatomic, strong) YFInputView *account;
 @property (nonatomic, strong) YFInputView *pwd;
 
+@property (nonatomic, strong) UIButton *registerBtn;
 @property (nonatomic, strong) UIButton *loginBtn;
 @property (nonatomic, strong) UIButton *forgetBtn;
 @property (nonatomic, strong) UIButton *changeCodeBtn;
@@ -47,9 +49,12 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
     [super viewDidLoad];
     self.loginType = YFLoginTypeAccount;
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [self setupUI];
     [self setupConstraint];
+    
+//    self.gk_navTitle = @"123";
+//    self.gk_navBarAlpha = 0; // Q:设置为0的时候，GK导航栏会崩溃
 }
 
 - (void)changeLoginType {
@@ -117,7 +122,7 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
     pwd.rightImage      = [UIImage imageNamed:@"secure_close"];
     pwd.rightSelectedImage = [UIImage imageNamed:@"secure_open"];
     pwd.placeholder = @"请输入密码";
-    account.type    = YFInputViewTypePwd;
+    pwd.type        = YFInputViewTypePwd;
     [self.view addSubview:pwd];
     self.pwd = pwd;
     
@@ -126,13 +131,22 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
     [self.view addSubview:self.forgetBtn];
     [self.view addSubview:self.changeCodeBtn];
     [self.view addSubview:self.changePwdBtn];
+    [self.view addSubview:self.registerBtn];
 }
 
 - (void)setupConstraint {
-    [self.pageMenu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(31);
+    CGFloat padding = 31;
+    [self.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(50);
+        make.top.equalTo(self.view).offset(130);
         make.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(100);
+    }];
+    
+    [self.pageMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(padding);
+        make.right.equalTo(self.view);
+        make.top.equalTo(self.registerBtn.mas_bottom).offset(100);
         make.height.mas_equalTo(50);
     }];
     
@@ -165,15 +179,15 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
         make.height.centerY.equalTo(self.forgetBtn);
         make.right.equalTo(self.view);
         make.width.mas_equalTo(150);
-
     }];
     
     [self.changePwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.centerY.equalTo(self.forgetBtn);
         make.right.equalTo(self.view);
         make.width.mas_equalTo(150);
-
     }];
+    
+
 }
 
 - (YFPageMenu *)pageMenu {
@@ -198,7 +212,6 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
 - (UIButton *)loginBtn {
     if (!_loginBtn) {
         _loginBtn = [[UIButton alloc] init];
-//        _loginBtn.backgroundColor = [UIColor yellowColor];
         [_loginBtn setBackgroundImage:[UIImage imageNamed:@"gradually"] forState:UIControlStateNormal];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -208,42 +221,41 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
 
 - (UIButton *)forgetBtn {
     if (!_forgetBtn) {
-        _forgetBtn = [[UIButton alloc] init];
-//        _forgetBtn.backgroundColor = [UIColor lightGrayColor];
-        _forgetBtn.titleLabel.font = kFontRegularSize(14);
-        [_forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
-        [_forgetBtn setTitleColor:HEXCOLOR(0xBBBBBB) forState:UIControlStateNormal];
-        [_forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _forgetBtn = [self createButton:@"忘记密码" titleColor:HEXCOLOR(0xBBBBBB) font:kFontRegularSize(14) selector:@selector(forgetBtnClick)];
     }
     return _forgetBtn;
 }
 
 - (UIButton *)changeCodeBtn {
     if (!_changeCodeBtn) {
-        _changeCodeBtn = [[UIButton alloc] init];
-        _changeCodeBtn.titleLabel.font = kFontRegularSize(14);
-        [_changeCodeBtn setTitle:@"验证码登录" forState:UIControlStateNormal];
-        [_changeCodeBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_changeCodeBtn addTarget:self action:@selector(changeCodeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _changeCodeBtn = [self createButton:@"验证码登录" titleColor:[UIColor blueColor] font:kFontRegularSize(14) selector:@selector(changeCodeBtnClick:)];
         [_changeCodeBtn setImage:[UIImage imageNamed:@"right_arrow"] forState:UIControlStateNormal];
-        
         [_changeCodeBtn layoutButtonWithEdgeInsetsStyle:YFPositionButtonTextLeft imageTitleSpace:0];
     }
     return _changeCodeBtn;
 }
 
+- (UIButton *)registerBtn {
+    if (!_registerBtn) {
+        _registerBtn = [self createButton:@"新用户注册" titleColor:[UIColor blueColor] font:kFontRegularSize(14) selector:@selector(registerBtnClick)];
+    }
+    return _registerBtn;
+}
+
 - (UIButton *)changePwdBtn {
     if (!_changePwdBtn) {
-        _changePwdBtn = [[UIButton alloc] init];
-        _changePwdBtn.titleLabel.font = kFontRegularSize(14);
-        [_changePwdBtn setTitle:@"密码登录" forState:UIControlStateNormal];
-        [_changePwdBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_changePwdBtn addTarget:self action:@selector(changePwdBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _changePwdBtn = [self createButton:@"密码登录" titleColor:[UIColor blueColor] font:kFontRegularSize(14) selector:@selector(changePwdBtnClick:)];
         [_changePwdBtn setImage:[UIImage imageNamed:@"right_arrow"] forState:UIControlStateNormal];
         _changePwdBtn.hidden = YES;
         [_changePwdBtn layoutButtonWithEdgeInsetsStyle:YFPositionButtonTextLeft imageTitleSpace:0];
     }
     return _changePwdBtn;
+}
+
+- (void)registerBtnClick {
+    NSLog(@"新用户注册");
+    YFRegisterViewController *vc = [[YFRegisterViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)forgetBtnClick {
@@ -266,5 +278,14 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
     [self changeLoginType];
 }
 
+
+- (UIButton *)createButton:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font selector:(SEL)sel{
+    UIButton *button = [[UIButton alloc] init];
+    button.titleLabel.font = font;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
+    [button addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
 
 @end

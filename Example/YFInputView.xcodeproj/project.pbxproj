@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F28D41EA7E6255CEA5E58550 /* Pods_YFInputView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7489DABCF361FCEA0C25A985 /* Pods_YFInputView_Example.framework */; };
+		F8AD50C926720E2F000D67DC /* YFRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AD50C726720E2F000D67DC /* YFRegisterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		118B73F6DCD1AB6B04DAD547 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		118B73F6DCD1AB6B04DAD547 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		1FD5AC0AF2CC781D310267C4 /* Pods-YFInputView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFInputView_Example.release.xcconfig"; path = "Target Support Files/Pods-YFInputView_Example/Pods-YFInputView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* YFInputView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFInputView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,11 +63,13 @@
 		7489DABCF361FCEA0C25A985 /* Pods_YFInputView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFInputView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA81F6DF71D52D4EA2DEE8B /* Pods-YFInputView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFInputView_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YFInputView_Tests/Pods-YFInputView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9DA5E1F916ACF96CAB0A5EC3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9DA5E1F916ACF96CAB0A5EC3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AE105E6282A07A357825C0FD /* Pods-YFInputView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFInputView_Example.debug.xcconfig"; path = "Target Support Files/Pods-YFInputView_Example/Pods-YFInputView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B332B81B2668155453829CB2 /* Pods_YFInputView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFInputView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5EF26B76B2A6C97A01ABDA /* Pods-YFInputView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFInputView_Tests.release.xcconfig"; path = "Target Support Files/Pods-YFInputView_Tests/Pods-YFInputView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EBE20B4B280EC4ECADD3CF0C /* YFInputView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = YFInputView.podspec; path = ../YFInputView.podspec; sourceTree = "<group>"; };
+		EBE20B4B280EC4ECADD3CF0C /* YFInputView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YFInputView.podspec; path = ../YFInputView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F8AD50C726720E2F000D67DC /* YFRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFRegisterViewController.m; sourceTree = "<group>"; };
+		F8AD50C826720E2F000D67DC /* YFRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFRegisterViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* YFViewController.h */,
 				6003F5A6195388D20070C39A /* YFViewController.m */,
+				F8AD50C826720E2F000D67DC /* YFRegisterViewController.h */,
+				F8AD50C726720E2F000D67DC /* YFRegisterViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -193,7 +198,6 @@
 				7FA81F6DF71D52D4EA2DEE8B /* Pods-YFInputView_Tests.debug.xcconfig */,
 				DE5EF26B76B2A6C97A01ABDA /* Pods-YFInputView_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +262,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -370,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8AD50C926720E2F000D67DC /* YFRegisterViewController.m in Sources */,
 				6003F59E195388D20070C39A /* YFAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* YFViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
