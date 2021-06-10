@@ -1,0 +1,16 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'YFInputView_Example' do
+  pod 'YFInputView', :path => '../'
+  pod 'YFPageMenu'
+  pod 'YFPositionButton'
+  pod 'Masonry'
+
+  target 'YFInputView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
