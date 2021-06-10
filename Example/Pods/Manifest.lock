@@ -2,7 +2,7 @@ PODS:
   - Masonry (1.1.0)
   - YFInputView (0.1.0)
   - YFPageMenu (1.0.1)
-  - YFPositionButton (0.0.2)
+  - YFPositionButton (0.0.3)
 
 DEPENDENCIES:
   - Masonry
@@ -22,9 +22,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  YFInputView: 52239fd0892a87c7aca877590e5f3b4d6857e465
+  YFInputView: 78a3f670b7670c6c3c1f2ec99347a5dd9e176cad
   YFPageMenu: 2dc659971109ba289302e5dd97426745b24f5989
-  YFPositionButton: 1adcbced469d4386c0f7a0dc446386987e52be07
+  YFPositionButton: 69549b85429c2726dc21965a71983996f7d1d3f3
 
 PODFILE CHECKSUM: e3c3fb0024d2acffeb8afb0b7349e01e83709c21
 

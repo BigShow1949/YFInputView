@@ -51,6 +51,30 @@
 
 - (void)setType:(YFInputViewType)type {
     _type = type;
+    switch (type) {
+        case YFInputViewTypeAccount:
+            NSLog(@"[self imageWithName:account] = %@", [self imageWithName:@"account"]);
+            self.leftImage    = [self imageWithName:@"account"];
+            self.placeholder  = @"请输入账号";
+            break;
+        case YFInputViewTypePhoneNum:
+            self.leftImage    = [self imageWithName:@"phoneNum"];
+            self.placeholder  = @"请输入手机号";
+            break;
+        case YFInputViewTypePwd:
+            self.leftImage       = [self imageWithName:@"pwd"];
+            self.rightImage      = [self imageWithName:@"secure_close"];
+            self.rightSelectedImage = [self imageWithName:@"secure_open"];
+            self.placeholder = @"请输入密码";
+            break;
+        case YFInputViewTypeCode:
+            self.leftImage    = [self imageWithName:@"verifyCode"];
+            self.placeholder  = @"请输入验证码";
+            break;
+        default:
+            break;
+    }
+    
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }
@@ -164,5 +188,16 @@
 //    [self sentPhoneCodeTimeMethod];
 }
 
+
+- (UIImage *)imageWithName:(NSString *)img {
+    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
+    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFTagView"];
+    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
+    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
+    associateBundleURL = [associateBunle URLForResource:@"YFTagView" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
+    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
+    return image3;
+}
 
 @end
