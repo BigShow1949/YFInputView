@@ -1,6 +1,6 @@
 {
   "name": "YFInputView",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "summary": "A short description of YFInputView.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/BigShow1949/YFInputView",
@@ -13,19 +13,15 @@
   },
   "source": {
     "git": "https://github.com/BigShow1949/YFInputView.git",
-    "tag": "0.1.0"
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "9.0"
   },
-<<<<<<< HEAD
   "source_files": "YFInputView/Classes/**/*",
   "resource_bundles": {
     "YFInputView": [
       "YFInputView/Assets/*.png"
     ]
   }
-=======
-  "source_files": "YFInputView/Classes/**/*"
->>>>>>> a38f48547b74afb758f6384a1d6bbf9f6cdbd03a
 }
