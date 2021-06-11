@@ -114,17 +114,11 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
 
 - (void)setupUI {
     YFInputView *account = [[YFInputView alloc] init];
-    account.leftImage    = [UIImage imageNamed:@"phoneNum"];
-    account.placeholder  = @"请输入账号";
     account.type = YFInputViewTypeAccount;
     self.account = account;
     [self.view addSubview:account];
     
     YFInputView *pwd    = [[YFInputView alloc] init];
-    pwd.leftImage       = [UIImage imageNamed:@"pwd"];
-    pwd.rightImage      = [UIImage imageNamed:@"secure_close"];
-    pwd.rightSelectedImage = [UIImage imageNamed:@"secure_open"];
-    pwd.placeholder = @"请输入密码";
     pwd.type        = YFInputViewTypePwd;
     [self.view addSubview:pwd];
     self.pwd = pwd;
