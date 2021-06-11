@@ -8,7 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YFInputView'
+<<<<<<< HEAD
   s.version          = '0.0.2'
+=======
+  s.version          = '0.1.0'
+>>>>>>> a38f48547b74afb758f6384a1d6bbf9f6cdbd03a
   s.summary          = 'A short description of YFInputView.'
 
 # This description is used to generate tags and improve search results.
@@ -32,9 +36,15 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'YFInputView/Classes/**/*'
   
+<<<<<<< HEAD
    s.resource_bundles = {
      'YFInputView' => ['YFInputView/Assets/*.png']
    }
+=======
+  # s.resource_bundles = {
+  #   'YFInputView' => ['YFInputView/Assets/*.png']
+  # }
+>>>>>>> a38f48547b74afb758f6384a1d6bbf9f6cdbd03a
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

@@ -18,10 +18,14 @@
   "platforms": {
     "ios": "9.0"
   },
+<<<<<<< HEAD
   "source_files": "YFInputView/Classes/**/*",
   "resource_bundles": {
     "YFInputView": [
       "YFInputView/Assets/*.png"
     ]
   }
+=======
+  "source_files": "YFInputView/Classes/**/*"
+>>>>>>> a38f48547b74afb758f6384a1d6bbf9f6cdbd03a
 }
