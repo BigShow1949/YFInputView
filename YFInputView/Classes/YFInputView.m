@@ -12,7 +12,8 @@
 @property (nonatomic, strong) UIView      *bottomLine;
 @property (nonatomic, strong) UIImageView *leftImgView;
 @property (nonatomic, strong) UIButton    *rightButtonView;
-@property (nonatomic, strong) YFVerifyCodeButton    *verifyCodeButton;
+@property (nonatomic, strong) YFVerifyCodeButton *verifyCodeButton;
+@property (nonatomic, strong) UIView      *verifyPaddingView;
 @end
 
 @implementation YFInputView
@@ -42,11 +43,12 @@
     _rightMargin = 31;
     _bottomLineColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0];
     _textColor = [UIColor colorWithRed:187/255.0 green:187/255.0 blue:187/255.0 alpha:1.0];
-    _textFont = [UIFont fontWithName:@"PingFang SC" size:14];
+    _textFont = [UIFont fontWithName:@"PingFang-SC-Regular" size:14];
     
-    _verifyCodeFont = [UIFont fontWithName:@"PingFang SC" size:12];
+    _verifyCodeFont = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
     _verifyCodeColor = [UIColor colorWithRed:24/255.0 green:144/255.0 blue:255/255.0 alpha:1.0];
 //    self.backgroundColor = [UIColor lightGrayColor];
+    
 }
 
 - (void)setType:(YFInputViewType)type {
@@ -111,6 +113,12 @@
     originY = (self.frame.size.height - height)/2;
     _verifyCodeButton.frame = CGRectMake(originX, originY, width, height);
     
+    width  = self.type==YFInputViewTypeCode? 0.5 : 0;;
+    height = 17;
+    originX = CGRectGetMinX(_verifyCodeButton.frame) - 15;
+    originY = (_verifyCodeButton.frame.size.height - height)/2;
+    _verifyPaddingView.frame = CGRectMake(originX, originY, width, height);
+    
 
     originX = CGRectGetMaxX(_leftImgView.frame) + 15; // 15：图片跟textField的间距
     width   = self.frame.size.width - originX - _rightMargin - _rightButtonView.frame.size.width - _verifyCodeButton.frame.size.width;
@@ -136,6 +144,7 @@
     _textField.placeholder = @"请输入……";
     _textField.font = _textFont;
     _textField.textColor = _textColor;
+    _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 //    _textField.secureTextEntry = NO;
     [self addSubview:_textField];
     
@@ -152,6 +161,10 @@
 //    [_verifyCodeButton addTarget:self action:@selector(verifyCodeClick:) forControlEvents:UIControlEventTouchUpInside];
     _verifyCodeButton.timeOut = 60;
     [self addSubview:_verifyCodeButton];
+    
+    _verifyPaddingView = [[UIView alloc] init];
+    _verifyPaddingView.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0];
+    [self addSubview:_verifyPaddingView];
 }
 
 - (void)rightClick:(UIButton *)button {
@@ -190,14 +203,15 @@
 
 
 - (UIImage *)imageWithName:(NSString *)img {
-    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
-    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFInputView"];
-    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
-    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
-    associateBundleURL = [associateBunle URLForResource:@"YFInputView" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
-    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
-    return image3;
+//    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
+//    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFInputView"];
+//    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
+//    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
+//    associateBundleURL = [associateBunle URLForResource:@"YFInputView" withExtension:@"bundle"];
+//    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
+//    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
+//    return image3;
+    return [UIImage imageNamed:img];
 }
 
 @end
