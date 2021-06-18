@@ -55,22 +55,22 @@
     _type = type;
     switch (type) {
         case YFInputViewTypeAccount:
-            NSLog(@"[self imageWithName:account] = %@", [self imageWithName:@"account"]);
-            self.leftImage    = [self imageWithName:@"account"];
+            NSLog(@"[self imageWithName:account] = %@", [self imgWithName:@"account"]);
+            self.leftImage    = [self imgWithName:@"account"];
             self.placeholder  = @"请输入账号";
             break;
         case YFInputViewTypePhoneNum:
-            self.leftImage    = [self imageWithName:@"phoneNum"];
+            self.leftImage    = [self imgWithName:@"phoneNum"];
             self.placeholder  = @"请输入手机号";
             break;
         case YFInputViewTypePwd:
-            self.leftImage       = [self imageWithName:@"pwd"];
-            self.rightImage      = [self imageWithName:@"secure_close"];
-            self.rightSelectedImage = [self imageWithName:@"secure_open"];
+            self.leftImage       = [self imgWithName:@"pwd"];
+            self.rightImage      = [self imgWithName:@"secure_close"];
+            self.rightSelectedImage = [self imgWithName:@"secure_open"];
             self.placeholder = @"请输入密码";
             break;
         case YFInputViewTypeCode:
-            self.leftImage    = [self imageWithName:@"verifyCode"];
+            self.leftImage    = [self imgWithName:@"verifyCode"];
             self.placeholder  = @"请输入验证码";
             break;
         default:
@@ -202,16 +202,13 @@
 }
 
 
-- (UIImage *)imageWithName:(NSString *)img {
-//    NSURL *associateBundleURL = [[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil];
-//    associateBundleURL = [associateBundleURL URLByAppendingPathComponent:@"YFInputView"];
-//    associateBundleURL = [associateBundleURL URLByAppendingPathExtension:@"framework"];
-//    NSBundle *associateBunle = [NSBundle bundleWithURL:associateBundleURL];
-//    associateBundleURL = [associateBunle URLForResource:@"YFInputView" withExtension:@"bundle"];
-//    NSBundle *bundle = [NSBundle bundleWithURL:associateBundleURL];
-//    UIImage *image3  = [UIImage imageNamed:img inBundle: bundle compatibleWithTraitCollection:nil];
-//    return image3;
-    return [UIImage imageNamed:img];
+- (UIImage *)imgWithName:(NSString *)name {
+    NSString *bundleName = [@"YFInputView.bundle" stringByAppendingPathComponent:name];
+    NSString *frameWorkName = [@"Frameworks/YFInputView.framework/YFInputView.bundle" stringByAppendingPathComponent:name];
+    
+    UIImage *image = [UIImage imageNamed:bundleName] ?: [UIImage imageNamed:frameWorkName];
+    if (!image) image = [UIImage imageNamed:name];
+    return image;
 }
 
 @end

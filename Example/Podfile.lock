@@ -1,6 +1,6 @@
 PODS:
   - Masonry (1.1.0)
-  - YFInputView (0.0.2)
+  - YFInputView (0.0.3)
   - YFPageMenu (1.0.1)
   - YFPositionButton (0.0.3)
 
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  YFInputView: c5c300797988bbeffce4c911765618fcff2cbbd8
+  YFInputView: f934088f43c96534dc8087cec29893e8ebda3063
   YFPageMenu: 2dc659971109ba289302e5dd97426745b24f5989
   YFPositionButton: 69549b85429c2726dc21965a71983996f7d1d3f3
 
