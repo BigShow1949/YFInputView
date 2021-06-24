@@ -1,13 +1,13 @@
 //
-//  YFVerifyCodeButton.m
+//  YFVerifyMsgCodeButton.m
 //  LoginLib
 //
 //  Created by BigShow on 2021/6/10.
 //
 
-#import "YFVerifyCodeButton.h"
+#import "YFVerifyMsgCodeButton.h"
 
-@implementation YFVerifyCodeButton
+@implementation YFVerifyMsgCodeButton
 
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,8 +37,8 @@
 
 - (void)sentPhoneCodeTimeMethod {
     
-    if (self.verifyCodeButtonBlock) {
-        self.verifyCodeButtonBlock();
+    if (self.verifyCodeBlock) {
+        self.verifyCodeBlock();
     }
     
     //倒计时时间 - 60S
