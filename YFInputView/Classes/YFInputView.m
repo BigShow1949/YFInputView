@@ -77,12 +77,20 @@
     _verifyMsgCodeButton.titleLabel.font = _verifyCodeFont;
     [_verifyMsgCodeButton setTitleColor:_verifyCodeColor forState:UIControlStateNormal];
     _verifyMsgCodeButton.normalColor = _verifyCodeColor;
-    _verifyMsgCodeButton.verifyCodeBlock = self.verifyCodeBlock;
+    __weak typeof(self) weakSelf = self;
+    _verifyMsgCodeButton.verifyCodeBlock = ^{
+        [weakSelf verifyCodeClick];
+        if (weakSelf.verifyCodeBlock) weakSelf.verifyCodeBlock();
+    };
     _verifyMsgCodeButton.timeOut = 5;
     [self addSubview:_verifyMsgCodeButton];
     
     _verifyImgCodeView = [[YFVerifyImgCodeView alloc] init];
-    _verifyImgCodeView.verifyCodeBlock = self.verifyCodeBlock;
+    _verifyImgCodeView.type = YFVerifyImgCodeViewTypeNetworkImage;
+    _verifyImgCodeView.verifyCodeBlock = ^{
+        [weakSelf verifyCodeClick];
+        if (weakSelf.verifyCodeBlock) weakSelf.verifyCodeBlock();
+    };
     [self addSubview:_verifyImgCodeView];
     
     _verifyPaddingView = [[UIView alloc] init];
@@ -92,7 +100,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+    NSLog(@"layoutSubviews %zd", self.type);
     CGFloat padding = 15; // 任意两个控件之间的间距
  
     CGFloat width   = self.frame.size.width - _leftMargin - _rightMargin;
@@ -168,7 +176,7 @@
         case YFInputViewTypePhoneNum:
             self.leftImage    = [self imgWithName:@"phoneNum"];
             self.placeholder  = @"请输入手机号";
-            self.textField.secureTextEntry = YES;
+            self.textField.secureTextEntry = NO;
             self.textField.keyboardType = UIKeyboardTypeNumberPad;
             self.maxLength    = 11;
             self.minLength    = 11;
@@ -178,7 +186,7 @@
             self.rightImage   = [self imgWithName:@"secure_close"];
             self.rightSelectedImage = [self imgWithName:@"secure_open"];
             self.placeholder  = @"请输入密码";
-            self.textField.secureTextEntry = NO;
+            self.textField.secureTextEntry = YES;
             self.maxLength    = 20;
             self.minLength    = 6;
             break;
@@ -187,8 +195,8 @@
             self.placeholder  = @"请输入验证码";
             self.textField.secureTextEntry = NO;
             self.textField.keyboardType = UIKeyboardTypeNumberPad;
-            self.maxLength    = 4;
-            self.minLength    = 4;
+            self.maxLength    = 6;
+            self.minLength    = 6;
             break;
         case YFInputViewTypeVerifyImgCode:
             self.leftImage    = [self imgWithName:@"verifyCode"];
@@ -229,6 +237,16 @@
     _bottomLine.backgroundColor = bottomLineColor;
 }
 
+- (void)setImgCode:(UIImage *)imgCode {
+    _imgCode = imgCode;
+    NSLog(@"_verifyImgCodeView = %@", _verifyImgCodeView);
+    _verifyImgCodeView.image = imgCode;
+}
+
+#pragma mark - Public
+// 供子类重写
+- (void)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {}
+- (void)verifyCodeClick {}
 #pragma mark - Private
 
 - (UIImage *)imgWithName:(NSString *)name {
@@ -301,6 +319,8 @@
     }
     
     self.inputEnable = self.changeingText.length >= self.minLength;
+    
+    [self shouldChangeCharactersInRange:range replacementString:string];
     
     if ([self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
         return [self.delegate textField:textField shouldChangeCharactersInRange:range replacementString:string];

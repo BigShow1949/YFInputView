@@ -9,20 +9,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, YFVerifyImgCodeViewType) {
-    YFVerifyImgCodeViewTypeLocal = 1,     // 前段自己做校验
-    YFVerifyImgCodeViewTypeNetwork,     // 获取后端codeStr
+    YFVerifyImgCodeViewTypeLocal = 1,     // 前端自己做校验
+    YFVerifyImgCodeViewTypeNetworkString, // 获取后端codeStr
+    YFVerifyImgCodeViewTypeNetworkImage,  // 获取后端image
 };
 
 
 @interface YFVerifyImgCodeView : UIView
 
 
-@property (nonatomic,copy) NSString* codeStr;
+@property (nonatomic,copy) NSString* codeStr;  // YFVerifyImgCodeViewTypeNetworkString 时候生效
+@property (nonatomic, strong) UIImage *image;  // YFVerifyImgCodeViewTypeNetworkImage  时候生效
+
 @property (nonatomic, copy) void(^verifyCodeBlock) (void);
 @property (nonatomic, assign) YFVerifyImgCodeViewType type;
 
 @property(nonatomic, getter=isLoading) BOOL loading;
-
 
 // 过滤多次连续点击
 // 网络请求加载框

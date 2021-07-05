@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, YFLoginType) {
             self.account.placeholder = @"请输入手机号";
             self.account.type = YFInputViewTypePhoneNum;
             self.pwd.placeholder = @"请输入验证码";
-            self.pwd.type = YFInputViewTypeCode;
+            self.pwd.type = YFInputViewTypeVerifyMsgCode;
 
             
             self.changePwdBtn.hidden  = NO;

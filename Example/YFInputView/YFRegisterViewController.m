@@ -8,13 +8,15 @@
 #import "YFRegisterViewController.h"
 #import <YFInputView/YFInputView.h>
 #import <Masonry/Masonry.h>
+#import "YFNetworkInputView.h"
 
-@interface YFRegisterViewController ()
+@interface YFRegisterViewController ()<UITextFieldDelegate>
 
-@property (nonatomic, strong) YFInputView *phoneNum;   // 手机号
-@property (nonatomic, strong) YFInputView *pwd;        // 密码
-@property (nonatomic, strong) YFInputView *pwdAgain;    // 账号
-@property (nonatomic, strong) YFInputView *verifyCode; // 验证码
+@property (nonatomic, strong) YFNetworkInputView *phoneNum;      // 手机号
+@property (nonatomic, strong) YFInputView *pwd;                  // 密码
+@property (nonatomic, strong) YFInputView *pwdAgain;             // 账号
+@property (nonatomic, strong) YFNetworkInputView *verifyImgCode; // 图片验证码
+@property (nonatomic, strong) YFNetworkInputView *verifyMsgCode; // 短信验证码
 
 @property (nonatomic, strong) UIButton *registerBtn;
 
@@ -50,15 +52,21 @@
     self.pwdAgain = pwdAgain;
     [self.view addSubview:pwdAgain];
     
-    YFInputView *verifyCode = [[YFInputView alloc] init];
-    verifyCode.type = YFInputViewTypeCode;
-    self.verifyCode = verifyCode;
-    [self.view addSubview:verifyCode];
+    YFNetworkInputView *verifyImgCode = [[YFNetworkInputView alloc] init];
+    verifyImgCode.type = YFInputViewTypeVerifyImgCode;
+    verifyImgCode.delegate = self;
+    self.verifyImgCode = verifyImgCode;
+    [self.view addSubview:verifyImgCode];
+    
+    YFInputView *verifyMsgCode = [[YFInputView alloc] init];
+    verifyMsgCode.type = YFInputViewTypeVerifyMsgCode;
+    self.verifyMsgCode = verifyMsgCode;
+    [self.view addSubview:verifyMsgCode];
     
     [self.view addSubview:self.phoneNum];
     [self.view addSubview:self.pwd];
     [self.view addSubview:self.pwdAgain];
-    [self.view addSubview:self.verifyCode];
+    [self.view addSubview:self.verifyMsgCode];
     [self.view addSubview:self.registerBtn];
 
 }
@@ -83,14 +91,20 @@
         make.height.mas_equalTo(60);
     }];
     
-    [self.verifyCode mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.verifyImgCode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.pwdAgain.mas_bottom);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(60);
     }];
     
+    [self.verifyMsgCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.verifyImgCode.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(60);
+    }];
+    
     [self.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.verifyCode.mas_bottom);
+        make.top.equalTo(self.verifyMsgCode.mas_bottom);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(94);
     }];

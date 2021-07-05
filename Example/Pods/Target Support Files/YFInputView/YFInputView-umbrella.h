@@ -11,7 +11,8 @@
 #endif
 
 #import "YFInputView.h"
-#import "YFVerifyCodeButton.h"
+#import "YFVerifyImgCodeView.h"
+#import "YFVerifyMsgCodeButton.h"
 
 FOUNDATION_EXPORT double YFInputViewVersionNumber;
 FOUNDATION_EXPORT const unsigned char YFInputViewVersionString[];

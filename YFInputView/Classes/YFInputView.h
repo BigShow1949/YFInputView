@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, YFInputViewType) {
 @property (nonatomic, strong) YFVerifyImgCodeView *verifyImgCodeView;
 @property (nonatomic, strong) YFVerifyMsgCodeButton *verifyMsgCodeButton;
 
-
+@property (nonatomic, strong) UIImage *imgCode;
 
 @property (nonatomic, copy) void(^verifyCodeBlock) (void);
 
@@ -57,6 +57,10 @@ typedef NS_ENUM(NSUInteger, YFInputViewType) {
 @property (nonatomic, assign) BOOL inputEnable;
 
 @property(nullable, nonatomic,weak)   id<UITextFieldDelegate> delegate;
+
+// 供子类重写
+- (void)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (void)verifyCodeClick;
 
 @end
 

@@ -14,14 +14,13 @@
 @interface YFVerifyImgCodeView ()
 @property (nonatomic,copy) NSArray* codeArr;
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+@property (nonatomic, strong) UIImageView *imgView;
 @end
 
 @implementation YFVerifyImgCodeView
 
-
 //初始化
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
@@ -36,7 +35,9 @@
 }
 
 //设置默认参数
-- (void)setupUI{
+- (void)setupUI {
+    
+    self.imgView = [[UIImageView alloc] init];
     
     UIActivityIndicatorView* indicatorView = [[UIActivityIndicatorView alloc] init];
     indicatorView.backgroundColor = [UIColor blueColor];
@@ -74,13 +75,18 @@
     _type = type;
     if (type == YFVerifyImgCodeViewTypeLocal) {
         [self getStrCode];
+    }else if (type == YFVerifyImgCodeViewTypeNetworkString) {
+        
+    }else if (type == YFVerifyImgCodeViewTypeNetworkImage) {
+        [self addSubview:self.imgView];
+        self.backgroundColor = [UIColor lightGrayColor];
     }
 }
 
-
 //刷新验证码
 - (void)changeCode{
-    if (self.type == YFVerifyImgCodeViewTypeNetwork && self.isLoading) return;
+    if (self.type == YFVerifyImgCodeViewTypeNetworkImage) return;
+    if (self.type == YFVerifyImgCodeViewTypeNetworkString && self.isLoading) return;
     if (self.verifyCodeBlock) {
         self.verifyCodeBlock();
     }
@@ -91,14 +97,14 @@
 
 - (void)setCodeStr:(NSString *)codeStr {
     _codeStr = codeStr;
-    if (self.type == YFVerifyImgCodeViewTypeLocal) return;
+    if (self.type != YFVerifyImgCodeViewTypeNetworkString) return;
     self.backgroundColor = ARC_COLOR;
     [self setNeedsDisplay];
 }
 
 - (void)setLoading:(BOOL)loading {
     _loading = loading;
-    if (self.type != YFVerifyImgCodeViewTypeNetwork) return;
+    if (self.type != YFVerifyImgCodeViewTypeNetworkString) return;
     if (loading) {
         [self.indicatorView startAnimating];
     }else {
@@ -109,8 +115,10 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    if (self.type == YFVerifyImgCodeViewTypeNetwork) {
-        //指定加载框中心点
+    if (self.type == YFVerifyImgCodeViewTypeNetworkImage) {
+        return;
+    };
+    if (self.type == YFVerifyImgCodeViewTypeNetworkString) { //指定加载框中心点
         [self.indicatorView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
         if (self.isLoading) return;
     }
@@ -148,5 +156,10 @@
     }
 }
 
+- (void)setImage:(UIImage *)image {
+    _image = image;
+    self.imgView.image = image;
+    self.imgView.frame = self.bounds;
+}
 
 @end

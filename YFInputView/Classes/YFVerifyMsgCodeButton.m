@@ -40,7 +40,6 @@
     if (self.verifyCodeBlock) {
         self.verifyCodeBlock();
     }
-    
     //倒计时时间 - 60S
     __block NSInteger timeOut = self.timeOut;
 //    self.timeOut = timeOut;
